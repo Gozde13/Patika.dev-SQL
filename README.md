@@ -405,3 +405,12 @@ koşuluyla sıralayınız. ( IN operatörünü kullanınız.)
     GROUP BY first_name, last_name
     ORDER BY shopping_number DESC;
     
+#### bu soruyu en fazla harcama yapan müşteri için şu şekilde çözebiliriz.
+
+    SELECT SUM(amount), customer.first_name, customer.last_name
+    FROM payment
+    JOIN customer ON customer.customer_id = payment.customer_id
+    GROUP BY payment.customer_id, customer.first_name, customer.last_name
+    ORDER BY SUM(amount) DESC
+    LIMIT 1;
+    
